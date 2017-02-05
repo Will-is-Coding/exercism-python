@@ -17,17 +17,24 @@ class Garden:
         "Larry": []
     }
 
-    plantTypes = (
-        "Grass",
-        "Clover",
-        "Radishes",
-        "Violets"
-    )
+    plantTypes = {
+        "G": "Grass",
+        "C": "Clover",
+        "R": "Radishes",
+        "V": "Violets"
+    }
 
     def __init__(self, plants):
         self.children = OrderedDict(sorted(self.children.items()))
         self.plantRows = plants.splitlines()
+        self.plantRows = [row[i:i + 2] for row in self.plantRows for i in range(0, len(row), 2)]
         print(self.plantRows)
-        print(self.children)
+
+    def plants(self, student):
+        return self.children[student]
+
+    def assignPlants(self):
+        #for cupIdx in range(len(self.plantRows[0])):
+        pass
 
 x = Garden("VVCCGG\nVVCCGG")
