@@ -1,6 +1,5 @@
-import re
-
 class Luhn:
+
     def __init__(self, number):
         self.number = list(map(int, list(str(number))))
 
@@ -16,14 +15,13 @@ class Luhn:
         return sum(self.addends())
 
     def is_valid(self):
-        print(self.number)
         return self.checksum() % 10 == 0 and len(self.number) > 1 and ''.join(map(str, self.number)).isdigit()
 
-    def create(self, number):
-        self.number = number
-        if checksum() % 10 != 0:
-            return self.addends() + [checksum() % 10]
+    def create(number):
+        created = Luhn(number)
+        created.number += [0]
+        missingNum = 10 - created.checksum() % 10
+        if missingNum == 10:
+            return int(''.join(map(str, created.number)))
         else:
-            return self.addends()
-
-print(Luhn.create(837263756))
+            return int(''.join(map(str, created.number[:-1] + [missingNum])))
